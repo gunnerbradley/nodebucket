@@ -1,12 +1,26 @@
+// /*
+// ============================================
+// ; Title:  app.js
+// ; Author: Gunner Bradley
+// ; Date:   March 23rd, 2022
+// ; Description: main application server file
+// ;===========================================
+// */
+
 /**
  * Require statements
  */
+require('dotenv').config()
 const express = require('express');
 const http = require('http');
 const morgan = require('morgan');
-const bodyParser = require('body-parser');                        
+const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
+
+// Required API's
+const employeeAPI = require('./routes/employee-routes');
+
 
 /**
  * App configurations
@@ -21,10 +35,12 @@ app.use('/', express.static(path.join(__dirname, '../dist/nodebucket')));
 /**
  * Variables
  */
-const port = 3000; // server port
+const port = process.env.PORT || 3000 ; // server port
+const DB_USERNAME = process.env.DB_USERNAME; //hidden db username
+const DB_PASSWORD = process.env.DB_PASSWORD; //hidden db password
+const DB_CLUSTER = process.env.DB_CLUSTER; //hidden db cluster
+const conn = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@cluster0.mlnw2.mongodb.net/${DB_CLUSTER}?retryWrites=true&w=majority`; //db atlas connection string
 
-// TODO: This line will need to be replaced with your actual database connection string
-const conn = 'mongodb+srv://superadmin:s3cret@cluster0-lujih.mongodb.net/nodebucket?retryWrites=true&w=majority';
 
 /**
  * Database connection
@@ -39,9 +55,14 @@ mongoose.connect(conn, {
   console.log(`MongoDB Error: ${err.message}`)
 }); // end mongoose connection
 
-/**
- * API(s) go here...
- */
+
+// API's
+app.use("/api", employeeAPI);
+
+
+
+
+
 
 /**
  * Create and start server

@@ -7,7 +7,7 @@
 
 <div fxLayout="column">
 
-  <mat-card fxFlex class="mat-elevation-z8 signin-container">
+  <mat-card fxFlex class="mat-elevation-z8 signin-container" id="signInCard">
     <mat-card-title> Sign In</mat-card-title>
 
     <mat-card-content>
@@ -30,7 +30,7 @@
             <mat-form-field fxFlex appearance="fill">
               <mat-label for="txtEmployeeId" id="lblEmployeeId">ID#</mat-label>
 
-              <input type="text" matInput formControlName="employeeId" required id="txtEmployeeId" name="txtEmployeeId" />
+              <input class="input-style" type="text" matInput formControlName="employeeId" required id="txtEmployeeId" name="txtEmployeeId" />
               <mat-hint>ID's:1007, 1008, 1009, 1010, 1011, 1012</mat-hint>
             </mat-form-field>
           </mat-card-content>

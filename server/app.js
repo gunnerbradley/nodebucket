@@ -60,10 +60,6 @@ mongoose.connect(conn, {
 app.use("/api", employeeAPI);
 
 
-
-
-
-
 /**
  * Create and start server
  */

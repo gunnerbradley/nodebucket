@@ -1,37 +1,27 @@
-<div fxLayout="column">
+<mat-toolbar class="navbar-container">
+  <mat-toolbar-row class="navbar-container">
+    <div class="logo">Node Bucket</div>
 
-    <!-- navigation -->
-    <nav fxFlex>
-      <mat-toolbar>
-        <!-- navbar container -->
-        <div class="navbar-container">
-          <!-- logo -->
-          <button class="logo" routerLink="/" mat-button>nodebucket</button>
-  
-          <button class="navbar-link" routerLink="/" mat-button>Home</button>
-          <button class="navbar-link" mat-button>About</button>
-        </div>
-  
-      </mat-toolbar>
-    </nav>
-  
-    <!-- main content -->
-    <div fxFlex>
-      <main class="main-content" fxFlex="100%;">
+    <div style="width: 80%">
+      <div fxLayout="row wrap" fxLayoutAlign="end start">
+        <button mat-button routerLink="/">Home</button>
+        <button mat-button (click)="signOut()">Sign Out</button>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<hr class="hr-style">
+
+<div fxLayout="row wrap">
+  <div fxFlex>
+    <mat-card class="main-container mat-elevation-z0 main-content" >
+      <br /><br />
+      <mat-card-content>
         <router-outlet></router-outlet>
-      </main>
-    </div>
-  
-    <!-- footer -->
-    <div fxFlex>
-      <footer class="footer">
-        <mat-toolbar class="footer-content">
-          <p>
-            &copy; {{year | date: 'yyyy'}} - nodebucket - <a href="https://www.bellevue.edu/" class="bu-link" target="_blank">Bellevue University</a>
-          </p>
-        </mat-toolbar>
-      </footer>
-    </div>
-  
+      </mat-card-content>
+    </mat-card>
   </div>
-  
+</div>
+
+

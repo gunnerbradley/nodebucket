@@ -10,10 +10,11 @@ const mongoose = require('mongoose'); //import mongoose
 
  let Schema = mongoose.Schema;
 
- //Employee task schema
+ //Task schema
  const taskSchema = new Schema({
-    body: String
+    text: String
   });
+
 
 
   //Employee document schema

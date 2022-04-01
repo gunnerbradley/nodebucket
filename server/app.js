@@ -20,6 +20,7 @@ const mongoose = require('mongoose');
 
 // Required API's
 const employeeAPI = require('./routes/employee-routes');
+const taskAPI = require('./routes/task-routes');
 
 
 /**
@@ -57,7 +58,7 @@ mongoose.connect(conn, {
 
 
 // API's
-app.use("/api", employeeAPI);
+app.use("/api", employeeAPI, taskAPI);
 
 
 /**

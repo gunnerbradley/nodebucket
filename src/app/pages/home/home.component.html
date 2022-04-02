@@ -1,8 +1,44 @@
-<div fxLayout="column" class="main-welcome" style="width: 50%; margin: auto">
-    <h1 class="title">
-      Welcome to WEB 450's - nodebucket Project <br />
-      <span class="subtitle">
-        Pay close attention to the requirements, double and triple check the files for code attribution, and do not wait until the last minute to begin working on each item.
-      </span>
-    </h1>
+<div fxLayout="row wrap">
+  <div fxFlex>
+    <mat-card class="mat-elevation-z0 main-list">
+      <br /><br />
+      <mat-card-title class="title">To-Do List</mat-card-title>
+      <hr>
+      <div fxLayout="row">
+         <div fxLayout="column" fxFlex="100%" class="new-task-forum">
+          <mat-card-subtitle class="subtitle">Add New Task</mat-card-subtitle>
+          <form action="api/employees/:empId/tasks">
+            <input type="text" class="task-input" placeholder="Task Description" id="newTask">
+            <input type="submit" value="Add+" class="task-submit" id="submitNewTask">
+          </form>
+        </div>
+        </div>
+
+<hr>
+      <mat-card-content>
+        <div fxLayout="column" fxFlex="50%" class="list todo-list">
+
+        <mat-card-subtitle class="subtitle">To-Do</mat-card-subtitle>
+        <ul>
+          <li class="item ">Buy Milk
+            <button class="x-button">
+              <img
+                src="../../../assets/icons/x-symbol.svg"
+                alt="Remove task item button"
+                height="20"
+                width="20"
+                class="x-icon"
+                />
+            </button>
+          </li>
+        </ul>
+
+        </div>
+
+        <div fxLayout="column" fxFlex="50%" class="list">
+          <mat-card-subtitle class="subtitle">Done</mat-card-subtitle>
+        </div>
+      </mat-card-content>
+    </mat-card>
   </div>
+</div>

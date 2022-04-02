@@ -1,14 +1,58 @@
-.main-welcome {
-    margin-top: 30px;
-  }
-  
-  .title {
-    text-align: center;
-    font-weight: lighter;
-  }
-  
-  .subtitle {
-    text-align: center;
-    font-size: 14px;
-  }
-  
+.main-list{
+  padding: 0 0 40px 0;
+}
+
+.title {
+  vertical-align: middle;
+  font-size: 3em;
+  margin: 0 0 40px 40px;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 2em;
+  margin-top: 10px;
+}
+
+.new-task-forum{
+  border-radius: 50px;
+}
+
+.task-input{
+  margin: 0 20px 20px 20px;
+  padding: 10px;
+  width: 70%;
+  font-size: 1.5em;
+}
+.task-submit{
+  width: 20%;
+  padding: 10px;
+  font-size: 1.5em;
+}
+
+.list{
+  padding: 5px;
+}
+
+.todo-list{
+  border-right: 4px solid #CBCBCB;
+  height: auto;
+}
+.item{
+  list-style-type: none;
+  border: 1px solid #CBCBCB;
+  border-radius: 50px;
+  padding: 15px;
+  font-size: 1.5em;
+  display: flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.x-button{
+  background-color: rgba(0,0,0,0);
+  border: none;
+  justify-content: flex-end;
+  margin-left:auto;
+}
+

@@ -7,9 +7,9 @@
       <div fxLayout="row">
          <div fxLayout="column" fxFlex="100%" class="new-task-forum">
           <mat-card-subtitle class="subtitle">Add New Task</mat-card-subtitle>
-          <form action="api/employees/:empId/tasks">
-            <input type="text" class="task-input" placeholder="Task Description" id="newTask">
-            <input type="submit" value="Add+" class="task-submit" id="submitNewTask">
+          <form action="" method="post">
+            <input matInput formControlName="text" type="text" class="task-input" placeholder="Enter Task..." id="newTask">
+            <button (click)="createTask">Add+</button>
           </form>
         </div>
         </div>

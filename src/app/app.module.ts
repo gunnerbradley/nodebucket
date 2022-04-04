@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 // components
 import { HomeComponent } from './pages/home/home.component';
@@ -24,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { ContactComponent } from './contact/contact.component';
+import { CreateTaskDialogComponent } from './shared/create-task-dialog/create-task-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,11 +34,15 @@ import { ContactComponent } from './contact/contact.component';
     AuthLayoutComponent,
     SignInComponent,
     NotFoundComponent,
-    ContactComponent
+    ContactComponent,
+    CreateTaskDialogComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+
+    HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     FlexLayoutModule,
@@ -49,6 +54,7 @@ import { ContactComponent } from './contact/contact.component';
     FormsModule,
     MatSelectModule,
     ReactiveFormsModule
+
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

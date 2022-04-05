@@ -40,7 +40,10 @@ const port = process.env.PORT || 3000 ; // server port
 const DB_USERNAME = process.env.DB_USERNAME; //hidden db username
 const DB_PASSWORD = process.env.DB_PASSWORD; //hidden db password
 const DB_CLUSTER = process.env.DB_CLUSTER; //hidden db cluster
-const conn = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@cluster0.mlnw2.mongodb.net/${DB_CLUSTER}?retryWrites=true&w=majority`; //db atlas connection string
+const conn = `mongodb+srv://450-user:Qwerty123@cluster0.mlnw2.mongodb.net/450-capstone?retryWrites=true&w=majority`; //db atlas connection string
+
+// const conn = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@cluster0.mlnw2.mongodb.net/${DB_CLUSTER}?retryWrites=true&w=majority`; //db atlas connection string
+
 
 
 /**

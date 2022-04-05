@@ -9,15 +9,16 @@ export class TaskService {
 
   constructor(private http: HttpClient) { }
 
-  public findAllTasks(empId: number): Observable<any> {
-    return this.http.get('api/employees' + empId + '/tasks')
+  findAllTasks(empId: number): Observable<any> {
+    return this.http.get('api/employees/' + empId + '/tasks')
   }
 
-  public createTask(empId: number, task: string): Observable<any> {
+  createTask(empId: number, task: string): Observable<any> {
     return this.http.post('/api/employees/' + empId + '/tasks', {
       text: task
     })
   }
+
 
 
 

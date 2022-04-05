@@ -3,6 +3,7 @@ import { Employee } from 'src/app/shared/models/employee.interface';
 import { Item } from 'src/app/shared/models/item.interface';
 import { CookieService } from 'ngx-cookie-service';
 import { TaskService } from '../services/task.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -11,12 +12,14 @@ import { TaskService } from '../services/task.service';
 })
 export class HomeComponent implements OnInit {
 
+  taskForm: FormGroup;
   employee: Employee;
   toDo: Item[];
   done: Item[];
   empId: number;
 
-  constructor(public taskService: TaskService, private cookieService: CookieService) {
+
+  constructor(public taskService: TaskService, private cookieService: CookieService, private fb: FormBuilder) {
     this.empId = parseInt(this.cookieService.get('session_user'), 10)
 
     this.taskService.findAllTasks(this.empId).subscribe(res => {
@@ -44,11 +47,20 @@ export class HomeComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.taskForm = this.fb.group({
+      text: [null, Validators.compose([Validators.required])]
+    })
+  }
 
-  createTask(data) {
-    this.taskService.createTask(this.empId, data)
-	}
+  newTask() {
+    this.taskService.createTask(this.empId, this.taskForm.controls['text'].value).subscribe(res => {
+      this.employee = res.data;
+    }, err => {
+     console.log(err);
+    })
+  }
+
 
 
 

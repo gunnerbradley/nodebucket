@@ -52,6 +52,7 @@ router.post('/employees/:empId/tasks', async (req, res) => {
 
                 empDoc.save(empDoc)
                     .then(()=>{
+                        console.log('message: Task added');
                         res.status(200).send({
                             'message': `Task added`
                         })

@@ -1,3 +1,4 @@
 export interface Item {
-  text: String;
-}
+   _id: string;
+   text: string;
+ }

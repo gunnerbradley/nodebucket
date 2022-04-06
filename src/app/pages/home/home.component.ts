@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router, NavigationEnd,ActivatedRoute} from '@angular/router';
 import { Employee } from 'src/app/shared/models/employee.interface';
 import { Item } from 'src/app/shared/models/item.interface';
 import { CookieService } from 'ngx-cookie-service';
@@ -17,9 +18,12 @@ export class HomeComponent implements OnInit {
   toDo: Item[];
   done: Item[];
   empId: number;
+  mySubscription: any;
 
 
-  constructor(public taskService: TaskService, private cookieService: CookieService, private fb: FormBuilder) {
+
+
+  constructor(public taskService: TaskService, private cookieService: CookieService, private fb: FormBuilder, private router: Router) {
     this.empId = parseInt(this.cookieService.get('session_user'), 10)
 
     this.taskService.findAllTasks(this.empId).subscribe(res => {
@@ -29,19 +33,21 @@ export class HomeComponent implements OnInit {
       this.employee = res;
       console.log('--Employee Object--')
       console.log(this.employee)
+
     }, err => {
-      console.log('--Eerver Error');
+      console.log('--Server Error');
       console.log(err);
     }, () => {
-      console.log('Inside complete function of findAllTasks API');
+
+      console.log('findAllTasks API');
 
       this.toDo = this.employee.toDo;
       this.done = this.employee.done;
 
-      console.log('--ToDo Tasks');
+      console.log('--ToDo Tasks--');
       console.log(this.toDo);
 
-      console.log('--Done Tasks');
+      console.log('--Done Tasks--');
       console.log(this.done)
     })
 
@@ -54,11 +60,46 @@ export class HomeComponent implements OnInit {
   }
 
   newTask() {
-    this.taskService.createTask(this.empId, this.taskForm.controls['text'].value).subscribe(res => {
-      this.employee = res.data;
-    }, err => {
-     console.log(err);
-    })
+    // this.taskService.createTask(this.empId, this.taskForm.controls['text'].value).subscribe(res => {
+    //   this.employee = res.data;
+
+    // }, err => {
+    //  console.log(err);
+    // },() => {
+    //     this.toDo = this.employee.toDo;
+    //     this.done = this.employee.done;
+    //  })
+
+      if (this.taskForm.controls['text'].value) {
+        this.taskService.createTask(this.empId, this.taskForm.controls['text'].value).subscribe(res => {
+          this.employee = res.data;
+        }, err => {
+         console.log(err);
+        }, () => {
+          this.toDo = this.employee.toDo;
+          this.done = this.employee.done;
+        }
+      )
+    }
+  }
+
+
+  deleteTask(taskId: string) {
+    if (taskId) {
+      console.log(`Delete Function: ${taskId} was deleted`);
+
+      this.taskService.deleteTask(this.empId, taskId).subscribe(res => {
+        this.employee = res.data;
+
+      }, err => {
+        console.log(err);
+      }, () => {
+        this.toDo = this.employee.toDo;
+        this.done = this.employee.done;
+
+      })
+    }
+     window.location.reload();
   }
 
 

@@ -15,10 +15,7 @@ router.get('/employees/:empId/tasks', async (req, res) => {
                     'message': `MongoDB Exception: ${err}`
                 })
             } else {
-
-                console.log(` TODO: ${employee.toDo}`);
-                console.log(` DONE: ${employee.done}`);
-                res.json(` TODO: ${employee.toDo} DONE: ${employee.done}`);
+                res.json(employee);
             }
         })
     } catch (err) {
@@ -68,6 +65,75 @@ router.post('/employees/:empId/tasks', async (req, res) => {
         res.status(500).send({'message': `Server Exception: ${err}`})
     }
 });
+
+
+// DeleteTask
+
+ router.delete('/employees/:empId/tasks/:taskId', async(req, res) => {
+
+    try {
+
+        Employee.findOne({'empId': req.params.empId}, (err, employee) => {
+
+            if (err) {
+              console.log(err);
+            } else {
+
+              console.log(employee);
+
+              const todoItem = employee.toDo.find(item => item._id.toString() === req.params.taskId);
+              const doneItem = employee.done.find(item => item._id.toString() === req.params.taskId);
+
+              if(todoItem) {
+                employee.toDo.id(todoItem._id).remove();
+
+                employee.save((err, updatedTodoItemEmployee) => {
+                  if (err) {
+                    console.log(err);
+                  } else {
+                    console.log(updatedTodoItemEmployee);
+                  }
+
+                });
+
+              }  else if(doneItem) {
+                  employee.done.id(doneItem._id).remove();
+
+                  employee.save((err, updatedDoneItemEmployee) => {
+                    if (err) {
+                      console.log(err);
+
+
+                    } else {
+                      console.log(updatedDoneItemEmployee);
+
+                    }
+                  });
+              } else {
+                console.log('Invalid task Id');
+
+                const deleteTaskNotFoundResponse = new ErrorResponse('404', 'Unable to locate the requested task', null);
+
+                res.status(404).send(deleteTaskNotFoundResponse.toObject());
+              }
+
+            }
+        });
+
+    } catch (e) {
+
+        console.log(e);
+
+        const deleteTaskCatchErrorResponse = new ErrorResponse('500', 'Internal server error', e.message);
+
+        res.status(500).send(deleteTaskCatchErrorResponse.toObject());
+    }
+ });
+
+
+
+
+
 
 module.exports = router;
 

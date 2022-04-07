@@ -1,12 +1,18 @@
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
+//shared
 import { BaseLayoutComponent } from './shared/base-layout/base-layout.component';
-import { HomeComponent } from './pages/home/home.component';
 import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
-import { SignInGuard } from './sign-in.guard';
+
+// pages
+import { HomeComponent } from './pages/home/home.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ContactComponent } from './pages/contact/contact.component';
+
 
 const routes: Routes = [
   {
@@ -15,28 +21,35 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: HomeComponent
+        component: HomeComponent,
+      },
+      {
+        path: 'about',
+        component: AboutComponent
+      },
+      {
+        path: 'contact',
+        component: ContactComponent
       }
-    ],
-    canActivate: [SignInGuard]
+    ]
   },
   {
     path: 'session',
     component: AuthLayoutComponent,
     children: [
       {
-        path: 'not-found',
-        component: NotFoundComponent
-      },
-      {
         path: 'sign-in',
         component: SignInComponent
+      },
+      {
+        path: 'not-found',
+        component: NotFoundComponent
       }
     ]
   },
   {
-    path: '**',
-    redirectTo: 'session/not-found'
+   path: '**',
+   redirectTo : 'session/not-found'
   }
 ];
 
@@ -45,5 +58,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-
-

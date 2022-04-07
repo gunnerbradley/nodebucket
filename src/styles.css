@@ -32,6 +32,7 @@ button{
 border-radius: 50px;
 background-color: none;
 padding: 5px;
+cursor: pointer;
 }
 
 hr{
@@ -39,4 +40,11 @@ hr{
   border-color: #CBCBCB;
   padding: 0;
   margin: 0;
+}
+
+.border-top{
+  border-top: 1px solid #CBCBCB;
+}
+.border-right{
+  border-right: 1px solid #CBCBCB;
 }

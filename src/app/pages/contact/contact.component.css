@@ -1,0 +1,30 @@
+.contact-card{
+  width: 50%;
+  margin: 10px auto;
+  font-size: 30px;
+}
+.contact-title{
+  font-size: 30px;
+
+
+}
+.card-content{
+display: flex;
+}
+.contact-text{
+  padding: 10px;
+  margin: 10px;
+  font-size: 30px;
+}
+
+.left-panel{
+  width: 50%;
+}
+
+.right-panel{
+  width: 50%;
+}
+.bottom-panel{
+  display: inline;
+  width: 100%;
+}

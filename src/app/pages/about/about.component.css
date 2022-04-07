@@ -1,0 +1,26 @@
+.about-card{
+  margin: 5% auto;
+  background-color: rgba(0,0,0,0);
+  box-shadow: none;
+}
+.title-section{
+  height: 100%;
+  width: 25%;
+  border-right: 3px solid black;
+  padding-right: 20px;
+}
+
+.title-style{
+  font-weight: 900;
+  font-size: 100px;
+  line-height: 100px;
+  text-align: right;
+  margin-left: auto;
+}
+
+.text-section{
+  width: 65%;
+  font-size: 24px;
+  line-height: 58px;
+  padding-left: 10px;
+}

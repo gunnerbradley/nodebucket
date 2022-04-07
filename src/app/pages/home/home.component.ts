@@ -60,16 +60,6 @@ export class HomeComponent implements OnInit {
   }
 
   newTask() {
-    // this.taskService.createTask(this.empId, this.taskForm.controls['text'].value).subscribe(res => {
-    //   this.employee = res.data;
-
-    // }, err => {
-    //  console.log(err);
-    // },() => {
-    //     this.toDo = this.employee.toDo;
-    //     this.done = this.employee.done;
-    //  })
-
       if (this.taskForm.controls['text'].value) {
         this.taskService.createTask(this.empId, this.taskForm.controls['text'].value).subscribe(res => {
           this.employee = res.data;

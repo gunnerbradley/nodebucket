@@ -23,8 +23,9 @@ import { MatListModule } from '@angular/material/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
-import { ContactComponent } from './contact/contact.component';
+import { ContactComponent } from './pages/contact/contact.component';
 import { CreateTaskDialogComponent } from './shared/create-task-dialog/create-task-dialog.component';
+import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
   declarations: [
@@ -36,12 +37,12 @@ import { CreateTaskDialogComponent } from './shared/create-task-dialog/create-ta
     NotFoundComponent,
     ContactComponent,
     CreateTaskDialogComponent,
+    AboutComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-
     HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,

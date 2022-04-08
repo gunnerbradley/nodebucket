@@ -77,11 +77,11 @@ export class HomeComponent implements OnInit {
     }
   }
 
-
   newTask() {
       if (this.taskForm.controls['text'].value) {
         this.taskService.createTask(this.empId, this.taskForm.controls['text'].value).subscribe(res => {
           this.employee = res.data;
+          window.location.reload();
         }, err => {
          console.log(err);
         }, () => {
@@ -91,7 +91,6 @@ export class HomeComponent implements OnInit {
       )
     }
   }
-
 
   deleteTask(taskId: string) {
     if (taskId) {

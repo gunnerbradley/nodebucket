@@ -26,8 +26,6 @@ router.get('/employees/:empId/tasks', async (req, res) => {
     }
 });
 
-
-
 //createTask
 router.post('/employees/:empId/tasks', async (req, res) => {
 
@@ -65,34 +63,56 @@ router.post('/employees/:empId/tasks', async (req, res) => {
 
 
 // DeleteTask
+router.delete('/employees/:empId/tasks/:taskId', async(req, res) => {
+  try {
+    Employee.findOne({'empId': req.params.empId}, (err, employee) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(employee);
 
- router.delete('/employees/:empId/tasks/:taskId', async(req, res) => {
+        const todoItem = employee.toDo.find(item => item._id.toString() === req.params.taskId);
+        const doneItem = employee.done.find(item => item._id.toString() === req.params.taskId);
 
-    try {
+        if(todoItem) {
+          employee.toDo.id(todoItem._id).remove();
+          employee.save();
 
-        Employee.findOne({'empId': req.params.empId}, (err, employee) => {
+        }  else if (doneItem) {
+            employee.done.id(doneItem._id).remove();
+            employee.save();
+        }
+      }
+    });
+  } catch (err) { console.log(err) }
+ });
 
-            if (err) {
-              console.log(err);
-            } else {
 
-              console.log(employee);
 
-              const todoItem = employee.toDo.find(item => item._id.toString() === req.params.taskId);
-              const doneItem = employee.done.find(item => item._id.toString() === req.params.taskId);
+  // update Task
+  router.put('/employees/:empId/tasks', async(req, res) => {
+   try {
 
-              if(todoItem) {
-                employee.toDo.id(todoItem._id).remove();
-                employee.save((err, newEmpDoc));
+    Employee.findOne({'empId': req.params.empId}, (err, employee) => {
 
-              }  else if(doneItem) {
-                  employee.done.id(doneItem._id).remove();
-                  employee.save((err, newEmpDoc));
-              }
-            }
-        });
+      if (err) {
+        console.log(err);
 
-    } catch (err) { console.log(err) }
+      } else {
+          console.log(employee);
+
+          employee.set({
+            toDo: req.body.toDo,
+            done: req.body.done
+          });
+
+          employee.save();
+      }
+    });
+
+   } catch (err) {
+      console.log(err);
+   }
  });
 
 

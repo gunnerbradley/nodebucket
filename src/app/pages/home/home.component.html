@@ -2,10 +2,11 @@
   <mat-card-content>
     <div fxLayout="row wrap">
       <div fxFlex>
-        <mat-card class="mat-elevation-z0 main-list">
+
           <br /><br />
           <mat-card-title class="title">To-Do List</mat-card-title>
           <hr>
+<!-- new task form -->
           <div fxLayout="row">
             <div fxLayout="column" fxFlex="100%" class="new-task-forum">
               <mat-card-subtitle class="subtitle">Add New Task</mat-card-subtitle>
@@ -14,21 +15,23 @@
                 <button (click)="newTask()" class="task-submit">Add+</button>
               </form>
             </div>
-            </div>
+          </div>
   <hr>
-        <mat-card-content>
-          <div fxLayout="column" fxFlex="50%" class="list todo-list">
+<!-- list section -->
+        <div cdkDropListGroup>
 
+          <div class="todo-list" fxFlex="50%">
             <mat-card-subtitle class="subtitle">To-Do</mat-card-subtitle>
-            <ul
+
+            <div
               cdkDropList
-              #todoList="cdkDropList"
               [cdkDropListData]="toDo"
-              [cdkDropListConnectedTo]="[done]"
+              class="list"
               (cdkDropListDropped)="drop($event)">
-              <div *ngFor="let item of toDo" >
-                <li class="item">{{ item.text }}
-                  <button class="x-button" (click)="deleteTask(item._id)">
+
+              <div class="item" *ngFor="let item of toDo" cdkDrag>
+                {{item.text}}
+                <button class="x-button" (click)="deleteTask(item._id)">
                     <img
                       src="../../../assets/icons/x-symbol.svg"
                       alt="Remove task item button"
@@ -37,27 +40,21 @@
                       class="x-icon"
                       />
                   </button>
-                </li>
               </div>
-            </ul>
-
+            </div>
           </div>
 
-
-
-
-
-          <div fxLayout="column" fxFlex="50%" class="list">
+          <div class="done-container" fxFlex="50%">
             <mat-card-subtitle class="subtitle">Done</mat-card-subtitle>
-            <ul
+            <div
               cdkDropList
-              #doneList="cdkDropList"
               [cdkDropListData]="done"
-              [cdkDropListConnectedTo]="[toDo]"
+              class="list"
               (cdkDropListDropped)="drop($event)">
-              <div *ngFor="let item of done" >
-                <li class="item">{{ item.text }}
-                  <button class="x-button" (click)="deleteTask(item._id)">
+
+              <div class="item" *ngFor="let item of done" cdkDrag>
+                {{item.text}}
+                <button class="x-button" (click)="deleteTask(item._id)">
                     <img
                       src="../../../assets/icons/x-symbol.svg"
                       alt="Remove task item button"
@@ -66,17 +63,11 @@
                       class="x-icon"
                       />
                   </button>
-                </li>
               </div>
-            </ul>
-
-
-
-
+            </div>
           </div>
-        </mat-card-content>
-      </mat-card>
+        </div>
+      </div>
     </div>
-  </div>
   </mat-card-content>
 </mat-card>

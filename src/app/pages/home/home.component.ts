@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {Router, NavigationEnd,ActivatedRoute} from '@angular/router';
+import {Router} from '@angular/router';
 import { Employee } from 'src/app/shared/models/employee.interface';
 import { Item } from 'src/app/shared/models/item.interface';
 import { CookieService } from 'ngx-cookie-service';
 import { TaskService } from '../services/task.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-home',
@@ -59,6 +60,24 @@ export class HomeComponent implements OnInit {
     })
   }
 
+   drop(event: CdkDragDrop<any[]>) {
+
+    if(event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+
+      console.log(`Reordered the existing list of task items`);
+    } else {
+      transferArrayItem(event.previousContainer.data, // array data
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+      console.log(`Moved task item to the container`);
+
+        this.updateTaskList(this.empId, this.toDo, this.done);
+    }
+  }
+
+
   newTask() {
       if (this.taskForm.controls['text'].value) {
         this.taskService.createTask(this.empId, this.taskForm.controls['text'].value).subscribe(res => {
@@ -86,13 +105,21 @@ export class HomeComponent implements OnInit {
       }, () => {
         this.toDo = this.employee.toDo;
         this.done = this.employee.done;
-
       })
     }
      window.location.reload();
   }
 
-
+  updateTaskList(empId: number, toDo: Item[], done: Item[]): void {
+    this.taskService.updateTask(empId, toDo, done).subscribe(res => {
+      this.employee = res.data;
+    }, err => {
+      console.log(err)
+    }, () => {
+      this.toDo = this.employee.toDo;
+      this.done = this.employee.done;
+    })
+  }
 
 
 

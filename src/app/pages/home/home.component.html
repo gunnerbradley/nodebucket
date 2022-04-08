@@ -20,7 +20,12 @@
           <div fxLayout="column" fxFlex="50%" class="list todo-list">
 
             <mat-card-subtitle class="subtitle">To-Do</mat-card-subtitle>
-            <ul>
+            <ul
+              cdkDropList
+              #todoList="cdkDropList"
+              [cdkDropListData]="toDo"
+              [cdkDropListConnectedTo]="[done]"
+              (cdkDropListDropped)="drop($event)">
               <div *ngFor="let item of toDo" >
                 <li class="item">{{ item.text }}
                   <button class="x-button" (click)="deleteTask(item._id)">
@@ -44,7 +49,12 @@
 
           <div fxLayout="column" fxFlex="50%" class="list">
             <mat-card-subtitle class="subtitle">Done</mat-card-subtitle>
-            <ul>
+            <ul
+              cdkDropList
+              #doneList="cdkDropList"
+              [cdkDropListData]="done"
+              [cdkDropListConnectedTo]="[toDo]"
+              (cdkDropListDropped)="drop($event)">
               <div *ngFor="let item of done" >
                 <li class="item">{{ item.text }}
                   <button class="x-button" (click)="deleteTask(item._id)">
@@ -59,6 +69,10 @@
                 </li>
               </div>
             </ul>
+
+
+
+
           </div>
         </mat-card-content>
       </mat-card>

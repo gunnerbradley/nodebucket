@@ -5,26 +5,19 @@
 }
 .contact-title{
   font-size: 30px;
-
-
+  padding: 5px;
 }
-.card-content{
-display: flex;
-}
+
 .contact-text{
   padding: 10px;
-  margin: 10px;
+  margin: 15px 10px 10px 10px;
   font-size: 30px;
 }
 
 .left-panel{
-  width: 50%;
+  border-right: 1px solid #CBCBCB;
 }
 
-.right-panel{
-  width: 50%;
-}
 .bottom-panel{
-  display: inline;
-  width: 100%;
+  text-align: center;
 }

@@ -60,10 +60,7 @@ router.post('/employees/:empId/tasks', async (req, res) => {
                 res.status(401).send({ 'message': `Invalid ID`})
             }
         })
-    } catch (err) {
-        console.log(err);
-        res.status(500).send({'message': `Server Exception: ${err}`})
-    }
+    } catch (err) { console.log(err) }
 });
 
 
@@ -86,48 +83,16 @@ router.post('/employees/:empId/tasks', async (req, res) => {
 
               if(todoItem) {
                 employee.toDo.id(todoItem._id).remove();
-
-                employee.save((err, updatedTodoItemEmployee) => {
-                  if (err) {
-                    console.log(err);
-                  } else {
-                    console.log(updatedTodoItemEmployee);
-                  }
-
-                });
+                employee.save((err, newEmpDoc));
 
               }  else if(doneItem) {
                   employee.done.id(doneItem._id).remove();
-
-                  employee.save((err, updatedDoneItemEmployee) => {
-                    if (err) {
-                      console.log(err);
-
-
-                    } else {
-                      console.log(updatedDoneItemEmployee);
-
-                    }
-                  });
-              } else {
-                console.log('Invalid task Id');
-
-                const deleteTaskNotFoundResponse = new ErrorResponse('404', 'Unable to locate the requested task', null);
-
-                res.status(404).send(deleteTaskNotFoundResponse.toObject());
+                  employee.save((err, newEmpDoc));
               }
-
             }
         });
 
-    } catch (e) {
-
-        console.log(e);
-
-        const deleteTaskCatchErrorResponse = new ErrorResponse('500', 'Internal server error', e.message);
-
-        res.status(500).send(deleteTaskCatchErrorResponse.toObject());
-    }
+    } catch (err) { console.log(err) }
  });
 
 

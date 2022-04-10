@@ -11,6 +11,7 @@ export class TaskService {
   constructor(private http: HttpClient) { }
 
   findAllTasks(empId: number): Observable<any> {
+    console.log(empId)
     return this.http.get('api/employees/' + empId + '/tasks')
   }
 

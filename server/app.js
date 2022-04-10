@@ -48,9 +48,7 @@ const conn = `mongodb+srv://450-user:Qwerty123@cluster0.mlnw2.mongodb.net/450-ca
 
 
 
-/**
- * Database connection
- */
+// Database connection
 mongoose.connect(conn, {
   promiseLibrary: require('bluebird'),
   useUnifiedTopology: true,
@@ -66,9 +64,7 @@ mongoose.connect(conn, {
 app.use("/api", employeeAPI, taskAPI);
 
 
-/**
- * Create and start server
- */
+// Create and start server
 http.createServer(app).listen(port, function() {
   console.log(`Application started and listening on port: ${port}`)
 }); // end http create server function

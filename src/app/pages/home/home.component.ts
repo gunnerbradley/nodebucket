@@ -21,9 +21,6 @@ export class HomeComponent implements OnInit {
   empId: number;
   mySubscription: any;
 
-
-
-
   constructor(public taskService: TaskService, private cookieService: CookieService, private fb: FormBuilder, private router: Router) {
     this.empId = parseInt(this.cookieService.get('session_user'), 10)
 
@@ -119,7 +116,4 @@ export class HomeComponent implements OnInit {
       this.done = this.employee.done;
     })
   }
-
-
-
 }

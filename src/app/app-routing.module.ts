@@ -1,39 +1,47 @@
-
+import { HomeComponent } from './pages/home/home.component';
+import { BaseLayoutComponent } from './shared/base-layout/base-layout.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-//shared
-import { BaseLayoutComponent } from './shared/base-layout/base-layout.component';
-import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { SignInGuard } from './sign-in.guard';
+import { AuthLayoutComponent} from './shared/auth-layout/auth-layout.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
-
-// pages
-import { HomeComponent } from './pages/home/home.component';
-import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { AboutComponent } from './pages/about/about.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
-
+/* configure routes*/
 const routes: Routes = [
   {
     path: '',
     component: BaseLayoutComponent,
-    children: [
-      {
-        path: '',
-        component: HomeComponent,
-      },
-      {
-        path: 'about',
-        component: AboutComponent
-      },
-      {
-        path: 'contact',
-        component: ContactComponent
+      children: [
+        {
+          path: '',
+          component: HomeComponent,
+          canActivate: [SignInGuard]
+        },
+        {
+          path: 'home',
+          component: HomeComponent,
+          canActivate: [SignInGuard]
+        },
+        {
+          path: 'contact',
+          component: ContactComponent,
+          canActivate: [SignInGuard],
+        },
+        {
+          path: 'about',
+          component: AboutComponent,
+          canActivate: [SignInGuard],
+        },
+        {
+        path: 'not-found',
+        component: NotFoundComponent
       }
-    ]
-  },
-  {
+      ]
+   },
+   {
     path: 'session',
     component: AuthLayoutComponent,
     children: [
@@ -48,13 +56,13 @@ const routes: Routes = [
     ]
   },
   {
-   path: '**',
-   redirectTo : 'session/not-found'
+    path: '**',
+    redirectTo: 'not-found'
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true, enableTracing: false, scrollPositionRestoration: 'enabled', relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

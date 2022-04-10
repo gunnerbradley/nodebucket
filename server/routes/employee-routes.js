@@ -4,6 +4,8 @@ const express = require("express");
 
 const router = express.Router();
 
+
+// get an Employee time
 router.get('/employee/:empId', async(req, res) => {
     try {
         Employee.findOne({'empId': req.params.empId}, (err, employeeById) => {
@@ -25,7 +27,7 @@ router.get('/employee/:empId', async(req, res) => {
     }
 })
 
-
+// get all employees
 router.get('/employee', async(req, res) => {
     try {
         Employee.find({}, (err, employee) =>{

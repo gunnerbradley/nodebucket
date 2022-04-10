@@ -15,6 +15,8 @@ import { BaseLayoutComponent } from './shared/base-layout/base-layout.component'
 import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { AboutComponent } from './pages/about/about.component';
 
 
 // Material imports
@@ -26,9 +28,7 @@ import { MatListModule } from '@angular/material/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
-import { ContactComponent } from './pages/contact/contact.component';
-import { CreateTaskDialogComponent } from './shared/create-task-dialog/create-task-dialog.component';
-import { AboutComponent } from './pages/about/about.component';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -40,7 +40,6 @@ import { AboutComponent } from './pages/about/about.component';
     SignInComponent,
     NotFoundComponent,
     ContactComponent,
-    CreateTaskDialogComponent,
     AboutComponent,
 
   ],
@@ -59,7 +58,8 @@ import { AboutComponent } from './pages/about/about.component';
     FormsModule,
     MatSelectModule,
     ReactiveFormsModule,
-    DragDropModule
+    DragDropModule,
+    MatIconModule
 
   ],
   providers: [CookieService],

@@ -30,8 +30,8 @@ let app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended': true}));
 app.use(morgan('dev'));
-app.use(express.static(path.join(__dirname, '../dist/nodebucket')));
-app.use('/', express.static(path.join(__dirname, '../dist/nodebucket')));
+app.use(express.static(path.join(__dirname, '../dist/nodebucket'))); //sends static app
+app.use('/', express.static(path.join(__dirname, '../dist/nodebucket'))); //sends static app
 
 /**
  * Variables
@@ -44,6 +44,7 @@ const DB_CLUSTER = process.env.DB_CLUSTER; //hidden db cluster
 // Unhidden DB Creds
 const conn = `mongodb+srv://450-user:Qwerty123@cluster0.mlnw2.mongodb.net/450-capstone?retryWrites=true&w=majority`; //db atlas connection string
 
+// hidden DB creds
 // const conn = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@cluster0.mlnw2.mongodb.net/${DB_CLUSTER}?retryWrites=true&w=majority`; //db atlas connection string
 
 
@@ -67,4 +68,4 @@ app.use("/api", employeeAPI, taskAPI);
 // Create and start server
 http.createServer(app).listen(port, function() {
   console.log(`Application started and listening on port: ${port}`)
-}); // end http create server function
+});

@@ -1,3 +1,8 @@
+//   Title: about.component.ts
+//   Author: Gunner Bradley
+//   Date: March 23rd 2022
+//   Description: about info page
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({

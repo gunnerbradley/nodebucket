@@ -1,3 +1,8 @@
+//   Title: auth-layout.component.ts
+//   Author: Gunner Bradley
+//   Date: March 23rd 2022
+//   Description: auth-layout component
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({

@@ -1,3 +1,10 @@
+/*
+//   Title: task.service.ts
+//   Author: Gunner Bradley
+//   Date: March 23rd 2022
+//   Description: functions for manipulating task API
+*/
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';

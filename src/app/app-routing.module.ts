@@ -1,3 +1,8 @@
+//   Title: app-routing.component.ts
+//   Author: Gunner Bradley
+//   Date: March 23rd 2022
+//   Description: routing for app
+
 import { HomeComponent } from './pages/home/home.component';
 import { BaseLayoutComponent } from './shared/base-layout/base-layout.component';
 import { NgModule } from '@angular/core';
@@ -12,6 +17,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 /* configure routes*/
 const routes: Routes = [
   {
+    // main routes
     path: '',
     component: BaseLayoutComponent,
       children: [
@@ -41,6 +47,8 @@ const routes: Routes = [
       }
       ]
    },
+
+  //  login routes
    {
     path: 'session',
     component: AuthLayoutComponent,
@@ -55,6 +63,8 @@ const routes: Routes = [
       }
     ]
   },
+
+  // all unknown to 404 page
   {
     path: '**',
     redirectTo: 'not-found'

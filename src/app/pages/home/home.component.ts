@@ -1,3 +1,8 @@
+//   Title: home.component.ts
+//   Author: Gunner Bradley
+//   Date: March 23rd 2022
+//   Description: main home page for NodeBucket
+
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { Employee } from 'src/app/shared/models/employee.interface';
@@ -19,7 +24,6 @@ export class HomeComponent implements OnInit {
   toDo: Item[];
   done: Item[];
   empId: number;
-  mySubscription: any;
 
   constructor(public taskService: TaskService, private cookieService: CookieService, private fb: FormBuilder, private router: Router) {
     this.empId = parseInt(this.cookieService.get('session_user'), 10)

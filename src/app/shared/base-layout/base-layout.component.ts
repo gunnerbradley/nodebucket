@@ -1,3 +1,8 @@
+//   Title: base-layout.component.ts
+//   Author: Gunner Bradley
+//   Date: March 23rd 2022
+//   Description: navbar fused across all pages
+
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';

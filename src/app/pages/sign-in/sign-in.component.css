@@ -1,9 +1,26 @@
 #signInCard{
   margin: 15vh auto;
+  padding: 20px;
   width: 550px;
   border-radius: 10px;
+
+}
+.input-style{
+  margin: 10px auto;
+  padding: 15px;
+  width: 90%;
 }
 
+.error-style{
+  margin: 10px;
+}
+.submit-style{
+  margin: 20px auto;
+  padding: 15px;
+  width: 50%;
+  display: block;
+  font-size: large;
+}
 @media only screen and (max-width: 1000px) {
 
   #signInCard{

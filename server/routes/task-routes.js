@@ -1,7 +1,14 @@
+// /*
+// ============================================
+// ; Title:  task-routes.js
+// ; Author: Gunner Bradley
+// ; Date:   March 23rd, 2022
+// ; Description: task API fot HTTP calls
+// ;===========================================
+// */
+
 const Employee = require("../models/employee");
-
 const express = require("express");
-
 const router = express.Router();
 
 
@@ -77,17 +84,18 @@ router.delete('/employees/:empId/tasks/:taskId', async(req, res) => {
         if(todoItem) {
           employee.toDo.id(todoItem._id).remove();
           employee.save();
+          res.send('ToDo Item Deleted')
 
         }  else if (doneItem) {
             employee.done.id(doneItem._id).remove();
             employee.save();
+            res.send('Done Item Deleted')
+
         }
       }
     });
   } catch (err) { console.log(err) }
  });
-
-
 
   // update Task
   router.put('/employees/:empId/tasks', async(req, res) => {
@@ -107,6 +115,7 @@ router.delete('/employees/:empId/tasks/:taskId', async(req, res) => {
           });
 
           employee.save();
+          res.send('Item Updated')
       }
     });
 
@@ -114,11 +123,6 @@ router.delete('/employees/:empId/tasks/:taskId', async(req, res) => {
       console.log(err);
    }
  });
-
-
-
-
-
 
 module.exports = router;
 

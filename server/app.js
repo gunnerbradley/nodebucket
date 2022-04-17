@@ -59,6 +59,10 @@ mongoose.connect(conn, {
 app.use("/api", employeeAPI, taskAPI);
 
 // Create and start server
-http.createServer(app).listen(port, function() {
-  console.log(`Application started and listening on port: ${port}`)
+// http.createServer(app).listen(port, function() {
+//   console.log(`Application started and listening on port: ${port}`)
+// });
+
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });

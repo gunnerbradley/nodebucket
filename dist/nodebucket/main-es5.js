@@ -185,12 +185,23 @@
           this.fb = fb;
           this.router = router;
           this.empId = parseInt(this.cookieService.get('session_user'), 10);
-          this.taskService.findAllTasks(this.empId).subscribe(function (res) {}, function (err) {
+          this.taskService.findAllTasks(this.empId).subscribe(function (res) {
+            console.log('--Server response from findAllTask--');
+            console.log(res);
+            _this.employee = res;
+            console.log('--Employee Object--');
+            console.log(_this.employee);
+          }, function (err) {
             console.log('--Server Error');
             console.log(err);
           }, function () {
+            console.log('findAllTasks API');
             _this.toDo = _this.employee.toDo;
             _this.done = _this.employee.done;
+            console.log('--ToDo Tasks--');
+            console.log(_this.toDo);
+            console.log('--Done Tasks--');
+            console.log(_this.done);
           });
         }
 
@@ -200,8 +211,7 @@
             this.taskForm = this.fb.group({
               text: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required])]
             });
-          } // Drag and Drop
-
+          }
         }, {
           key: "drop",
           value: function drop(event) {
@@ -214,8 +224,7 @@
               console.log("Moved task item to the container");
               this.updateTaskList(this.empId, this.toDo, this.done);
             }
-          } //add new task
-
+          }
         }, {
           key: "newTask",
           value: function newTask() {
@@ -232,8 +241,7 @@
                 _this2.done = _this2.employee.done;
               });
             }
-          } // delete taks
-
+          }
         }, {
           key: "deleteTask",
           value: function deleteTask(taskId) {
@@ -252,8 +260,7 @@
             }
 
             window.location.reload();
-          } // update task arrays
-
+          }
         }, {
           key: "updateTaskList",
           value: function updateTaskList(empId, toDo, done) {

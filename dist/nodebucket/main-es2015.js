@@ -79,12 +79,23 @@ class HomeComponent {
         this.fb = fb;
         this.router = router;
         this.empId = parseInt(this.cookieService.get('session_user'), 10);
-        this.taskService.findAllTasks(this.empId).subscribe(res => { }, err => {
+        this.taskService.findAllTasks(this.empId).subscribe(res => {
+            console.log('--Server response from findAllTask--');
+            console.log(res);
+            this.employee = res;
+            console.log('--Employee Object--');
+            console.log(this.employee);
+        }, err => {
             console.log('--Server Error');
             console.log(err);
         }, () => {
+            console.log('findAllTasks API');
             this.toDo = this.employee.toDo;
             this.done = this.employee.done;
+            console.log('--ToDo Tasks--');
+            console.log(this.toDo);
+            console.log('--Done Tasks--');
+            console.log(this.done);
         });
     }
     ngOnInit() {
@@ -92,7 +103,6 @@ class HomeComponent {
             text: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_0__["Validators"].required])]
         });
     }
-    // Drag and Drop
     drop(event) {
         if (event.previousContainer === event.container) {
             Object(_angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_1__["moveItemInArray"])(event.container.data, event.previousIndex, event.currentIndex);
@@ -105,7 +115,6 @@ class HomeComponent {
             this.updateTaskList(this.empId, this.toDo, this.done);
         }
     }
-    //add new task
     newTask() {
         if (this.taskForm.controls['text'].value) {
             this.taskService.createTask(this.empId, this.taskForm.controls['text'].value).subscribe(res => {
@@ -119,7 +128,6 @@ class HomeComponent {
             });
         }
     }
-    // delete taks
     deleteTask(taskId) {
         if (taskId) {
             console.log(`Delete Function: ${taskId} was deleted`);
@@ -134,7 +142,6 @@ class HomeComponent {
         }
         window.location.reload();
     }
-    // update task arrays
     updateTaskList(empId, toDo, done) {
         this.taskService.updateTask(empId, toDo, done).subscribe(res => {
             this.employee = res.data;

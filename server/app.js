@@ -33,21 +33,15 @@ app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '../dist/nodebucket'))); //sends static app
 app.use('/', express.static(path.join(__dirname, '../dist/nodebucket'))); //sends static app
 
-/**
- * Variables
- */
 const port = process.env.PORT || 3000 ; // server port
+
+// hidden DB creds
 const DB_USERNAME = process.env.DB_USERNAME; //hidden db username
 const DB_PASSWORD = process.env.DB_PASSWORD; //hidden db password
 const DB_CLUSTER = process.env.DB_CLUSTER; //hidden db cluster
 
-// Unhidden DB Creds
-const conn = `mongodb+srv://450-user:Qwerty123@cluster0.mlnw2.mongodb.net/450-capstone?retryWrites=true&w=majority`; //db atlas connection string
-
-// hidden DB creds
-// const conn = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@cluster0.mlnw2.mongodb.net/${DB_CLUSTER}?retryWrites=true&w=majority`; //db atlas connection string
-
-
+// DB connection string
+const conn = `mongodb+srv://${DB_USERNAME}:${DB_PASSWORD}@cluster0.mlnw2.mongodb.net/${DB_CLUSTER}?retryWrites=true&w=majority`; //db atlas connection string
 
 // Database connection
 mongoose.connect(conn, {
@@ -63,7 +57,6 @@ mongoose.connect(conn, {
 
 // API's
 app.use("/api", employeeAPI, taskAPI);
-
 
 // Create and start server
 http.createServer(app).listen(port, function() {
